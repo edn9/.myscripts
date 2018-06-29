@@ -1,5 +1,6 @@
 #!/bin/bash
 #calcular resistor para leds, feito por Necronoise quinta 14 junho mês 6 2018
+#pt-br only, resistor calculator for leds, arduino
 
 printf "Para calcular a resistência associada em serie com o Led, faremos o seguinte calculo:\n"
 printf "R1 = VR1 / I\n\n"
