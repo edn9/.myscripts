@@ -1,4 +1,5 @@
 #!/bin/bash
+#made by necronoise
 echo "Youtube-dl.";
 
 read -p "Pesquise por sua musica: " musica;
