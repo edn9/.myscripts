@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#made by necronoise
 ffmpeg -f x11grab \
 -s 1366x768 \
 -an -i :0.0 \
