@@ -1,0 +1,12 @@
+#!/bin/bash
+echo -e "Teste de ping... \n"
+
+ping -c 3 www.youtube.com
+
+until [ $? -eq 0 ];
+	do
+		echo -e "\nTestando de novo... \n"
+		sleep 3
+		ping -c 3 www.youtube.com
+	done
+echo -e "\nInternet ok."
