@@ -1,0 +1,15 @@
+#!/bin/sh
+#made by necronoise
+#make sure you have ffmpeg in your distro
+#this script can record your screen and save it in mkv format, no audio
+
+notify-send "ffmpeg" "Recording with system audio..."
+
+ffmpeg -f x11grab \
+-framerate 30 \
+-video_size 1366x768 -i :0.0 \
+-f alsa \
+-i hw:1 \
+-r 25 \
+-q:v 5 \
+-y ~/videos/record/record_`date +%d-%m-%Y_%H:%M`.mp4
