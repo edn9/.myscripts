@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+#by necro
+clear
+e="\e[0m"
+bg="\033[48;5;196m"
+or="\033[48;5;208m"
+yl="\033[48;5;226m"
+gr="\033[48;5;41m"
+bl="\033[48;5;21m"
+pu="\033[48;5;93m"
+bk="\e[38;05;232m"
+wh="\e[38;05;255m"
+while true; do
+	d=$(shuf -i 1-6 -n 1)
+	echo -e "${wh}Dado de 6 lados. \nSeu valor é: $d$e\n"
+	if [ "$d" == 1 ]; then
+		echo -e "$bg         $e"
+		echo -e "$bg         $e"
+		echo -e "$bg$bk    ●    $e"
+		echo -e "$bg         $e"
+		echo -e "$bg         $e\n"
+	fi
+	if [ "$d" == 2 ]; then
+		echo -e "$or         $e"
+		echo -e "$or$bk    ●    $e"
+		echo -e "$or         $e"
+		echo -e "$or$bk    ●    $e"
+		echo -e "$or         $e\n"
+	fi
+	if [ "$d" == 3 ]; then
+		echo -e "$yl$bk       ● $e"
+		echo -e "$yl         $e"
+		echo -e "$yl$bk    ●    $e"
+		echo -e "$yl         $e"
+		echo -e "$yl$bk ●       $e\n"
+	fi
+	if [ "$d" == 4 ]; then
+		echo -e "$gr$bk ●     ● $e"
+		echo -e "$gr         $e"
+		echo -e "$gr         $e"
+		echo -e "$gr         $e"
+		echo -e "$gr$bk ●     ● $e\n"
+	fi
+	if [ "$d" == 5 ]; then
+		echo -e "$bl$bk ●     ● $e"
+		echo -e "$bl         $e"
+		echo -e "$bl$bk    ●    $e"
+		echo -e "$bl         $e"
+		echo -e "$bl$bk ●     ● $e\n"
+	fi
+	if [ "$d" == 6 ]; then
+		echo -e "$pu$bk ●     ● $e"
+		echo -e "$pu         $e"
+		echo -e "$pu$bk ●     ● $e"
+		echo -e "$pu         $e"
+		echo -e "$pu$bk ●     ● $e\n"
+	fi
+	echo -e "${wh}Rodar de novo? [enter/n] $e"; read -p "" input;
+	case $input in
+		*)
+			echo -e "${wh}Limpando dados.$e"
+			sleep 0.1
+			clear
+			;;
+		[nN][oO]|[nN])
+			echo -e "${wh}Nope. See you later!$e"
+			exit 1
+	esac
+done
+exit
