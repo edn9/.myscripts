@@ -2,23 +2,23 @@
 #by necro
 clear
 e="\e[0m"
-bg="\033[48;5;196m"
-or="\033[48;5;208m"
-yl="\033[48;5;226m"
-gr="\033[48;5;41m"
-bl="\033[48;5;21m"
-pu="\033[48;5;93m"
-bk="\e[38;05;232m"
-wh="\e[38;05;255m"
+re="\e[48;2;216;62;65m"
+or="\e[48;2;232;115;38m"
+yl="\e[48;2;225;224;58m"
+gr="\e[48;2;0;166;102m"
+bl="\e[48;2;20;102;176m"
+pu="\e[48;2;85;91;167m"
+bk="\e[38;05;232m" #black font
+wh="\e[38;05;255m" #white font
 while true; do
-	d=$(shuf -i 1-6 -n 1)
+	d=$((RANDOM%6+1))
 	echo -e "${wh}Dado de 6 lados. \nSeu valor é: $d$e\n"
 	if [ "$d" == 1 ]; then
-		echo -e "$bg         $e"
-		echo -e "$bg         $e"
-		echo -e "$bg$bk    ●    $e"
-		echo -e "$bg         $e"
-		echo -e "$bg         $e\n"
+		echo -e "$re         $e"
+		echo -e "$re         $e"
+		echo -e "$re$bk    ●    $e"
+		echo -e "$re         $e"
+		echo -e "$re         $e\n"
 	fi
 	if [ "$d" == 2 ]; then
 		echo -e "$or         $e"
@@ -57,14 +57,15 @@ while true; do
 	fi
 	echo -e "${wh}Rodar de novo? [enter/n] $e"; read -p "" input;
 	case $input in
-		*)
+		"")
 			echo -e "${wh}Limpando dados.$e"
 			sleep 0.1
 			clear
 			;;
 		[nN][oO]|[nN])
 			echo -e "${wh}Nope. See you later!$e"
-			exit 1
+			break
+			;;
 	esac
 done
 exit
