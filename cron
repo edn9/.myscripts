@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#by necro
+function trap_ctrlc ()
+{
+	clear
+	echo -e "Seu tempo de cronômetro foi:\n$h horas, $m minutos e $s segundos."
+	exit
+}
+trap "trap_ctrlc" 2
+clear
+s=0;
+m=0;
+h=0;
+while true; do
+	echo -ne "Cronômetro - $h:$m:$s.\033[0K\r"
+	: $((s++))
+	sleep 1
+	if [ "$s" -eq 60 ]; then
+		s=0;
+		: $((m++))
+	fi
+	if [ "$m" -eq 60 ]; then
+		m=0;
+		: $((h++))
+	fi
+done
