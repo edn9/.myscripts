@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#by necro
+e="\e[0m" #erase
+gr="\e[38;05;76m" #green
+ye="\e[38;05;220m" #yellow
+re="\e[38;2;241;47;47m" #red
+rebg="\e[48;2;241;47;47m"
+bk="\e[38;2;56;0;4m"
+while true; do
+	clear
+	echo Temperatures:
+	temp1=$(cat /sys/devices/virtual/thermal/thermal_zone0/temp)
+	temp2=$(cat /sys/devices/virtual/thermal/thermal_zone1/temp)
+	tem1=$(echo "$temp1 / 1000" | bc)
+	tem2=$(echo "$temp2 / 1000" | bc)
+	if [ "$tem1" -ge 0 ] && [ "$tem1" -le 65 ]; then
+		echo -e "temp_core0 $gr$tem1ºC$e"
+	elif [ "$tem1" -ge 66 ] && [ "$tem1" -le 75 ]; then
+		echo -e "temp_core0 $ye$tem1ºC$e"
+	elif [ "$tem1" -ge 76 ] && [ "$tem1" -le 89 ]; then
+		echo -e "temp_core0 $re$tem1ºC$e"
+	elif [ "$tem1" -ge 90 ]; then #based on my TJUNCTION cpu info
+		echo -e "temp_core0 $rebg$bk$tem1ºC WARNING$e"
+	fi
+	if [ "$tem2" -ge 0 ] && [ "$tem2" -le 65 ]; then
+		echo -e "temp_core1 $gr$tem2ºC$e"
+	elif [ "$tem2" -ge 66 ] && [ "$tem2" -le 75 ]; then
+		echo -e "temp_core1 $ye$tem2ºC$e"
+	elif [ "$tem2" -ge 76 ] && [ "$tem2" -le 89 ]; then
+		echo -e "temp_core1 $re$tem2ºC$e"
+	elif [ "$tem2" -ge 90 ]; then 
+		echo -e "temp_core1 $rebg$bk$tem2ºC WARNING$e"fi
+	fi
+	sleep 1
+done
