@@ -1,13 +1,28 @@
 #!/bin/sh
-#made by necronoise
-#make sure you have ffmpeg in your distro
-#this script can record your screen and save it in mkv format, no audio
 
-notify-send "ffmpeg" "Recording..."
+# h264_nvenc is for using gpu to encode
+# use libx264 for cpu
 
-ffmpeg -f x11grab \
--s 1366x768 \
--an -i :0.0 \
--r 25 \
--q:v 5 \
--y ~/videos/record_`date +%d-%m-%Y_%H:%M`.mp4
+if pgrep ffmpeg; then
+	killall ffmpeg
+	notify-send "FFmpeg" "Gravação da tela finalizada!"
+	exit 0
+fi
+
+set $(slop -q -o -f '%x %y %w %h')
+
+notify-send "FFmpeg" "Gravação da tela iniciada!"
+
+ffmpeg -s ${3}x${4} \
+-f x11grab \
+-i :0.0+${1},${2} \
+-f pulse \
+-ac 2 \
+-i default \
+-c:v libx264 \
+-cq 19 \
+-r 30 \
+-c:a libopus \
+-b:a 72k \
+-y ~/videos/record/record_`date +%d-%m-%Y_%H:%M`.mkv \
+> /dev/null 2>&1
