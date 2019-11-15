@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #mpvs v0.2
 #by edn9
+a=${1}
 clear
 ls ~/music/ > ~/.myscripts/dados
 cat -n ~/.myscripts/dados
-a=${1}
-if [ $a > 0 ]
+if [ -n "$a" ]
 then
 	clear
 	c=$(sed $a'!d' ~/.myscripts/dados)
