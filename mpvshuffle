@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-#by necronoise
-clear
-ls ~/music/ > ~/.myscripts/dados
-cat -n ~/.myscripts/dados
-read -p "Escolha uma banda: " b;
-c=$(sed $b'!d' dados)
-mpv "music/$c" --no-video --shuffle
