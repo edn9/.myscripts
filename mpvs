@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#mpvs v0.2
+#by edn9
+clear
+ls ~/music/ > ~/.myscripts/dados
+cat -n ~/.myscripts/dados
+a=${1}
+if [ $a > 0 ]
+then
+	clear
+	c=$(sed $a'!d' ~/.myscripts/dados)
+	mpv "music/$c" --no-video --shuffle
+else
+read -p "Escolha uma banda: " b;
+c=$(sed $b'!d' ~/.myscripts/dados)
+mpv "music/$c" --no-video --shuffle
+fi
